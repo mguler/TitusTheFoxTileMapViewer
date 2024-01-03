@@ -24,7 +24,27 @@ namespace TTFTileMapViewer
 
             AutoScroll = true;
             SetAutoScrollMargin(256 * 16, (int)_levelSize * 16);
-            panel1.Size = new Size(0,0);
+            panel1.Size = new Size(0, 0);
+        }
+
+        public TileViewerForm(Stream stream)
+        {
+            InitializeComponent();
+            this.DoubleBuffered = this.ResizeRedraw = true;
+            _levelSize = (stream.Length - 35828) / 256;
+            var p = 256 * _levelSize + 32768;
+            _tileMap = new byte[_levelSize * 256];
+            stream.Read(_tileMap, 0, _tileMap.Length);
+            var bitmaps = new byte[256 * 128];
+            stream.Position = (_levelSize * 256);
+            stream.Read(bitmaps, (int)0, bitmaps.Length);
+            var t = this.AutoScrollMargin;
+            _tiles = TileTool.GetTiles(bitmaps);
+            stream.Dispose();
+
+            AutoScroll = true;
+            SetAutoScrollMargin(256 * 16, (int)_levelSize * 16);
+            panel1.Size = new Size(0, 0);
         }
 
         private void Form1_Load(object sender, EventArgs e)

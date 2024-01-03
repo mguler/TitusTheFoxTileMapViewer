@@ -21,23 +21,39 @@ namespace TTFTileMapViewer
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            openFileDialog1.ShowDialog();
-            if (!string.IsNullOrEmpty(openFileDialog1.FileName))
+            openFileDialog.ShowDialog();
+            if (!string.IsNullOrEmpty(openFileDialog.FileName))
             {
-                var form = new TileViewerForm(openFileDialog1.FileName);
-                form.Text = openFileDialog1.FileName;
+                var form = new TileViewerForm(openFileDialog.FileName);
+                form.Text = openFileDialog.FileName;
                 form.MdiParent = this;
                 form.Show();
                 _tileToolbox.Tiles = form.Tiles;
             }
         }
-        
+
         private void MainForm_Load(object sender, EventArgs e)
         {
             _tileToolbox = new TileToolForm();
             _tileToolbox.MdiParent = this;
             _tileToolbox.Show();
 
+        }
+
+        private void importToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            importFileDialog.ShowDialog();
+            if (!string.IsNullOrEmpty(importFileDialog.FileName))
+            {
+                var fileContent = File.ReadAllBytes(importFileDialog.FileName);
+                var lzwDecoder = new LZWDecoder();
+                var decoded = lzwDecoder.Decode(fileContent); 
+                var form = new TileViewerForm(decoded);
+                form.Text = importFileDialog.FileName;
+                form.MdiParent = this;
+                form.Show();
+                _tileToolbox.Tiles = form.Tiles;
+            }
         }
     }
 }
