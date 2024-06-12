@@ -16,8 +16,15 @@ namespace TTFTileMapViewer
         public bool ShowBonusses { get => _showBonusses; set { _showBonusses = value; Refresh(); } }
         private bool _showBonusses;
 
+        public bool ShowGates { get => _showGates; set { _showGates = value; Refresh(); } }
+        private bool _showGates;
+
+        public bool ShowTransportation { get => _showTransportation; set { _showTransportation = value; Refresh(); } }
+        private bool _showTransportation;
+
         public Bonus[] Bonusses { get; private set; }
         public GameObject[] GameObjects { get; private set; }
+        public Gate[] Gates { get; private set; }
 
         public TileViewerForm( )
         {
@@ -46,12 +53,14 @@ namespace TTFTileMapViewer
             panel1.Size = new Size(0, 0);
         }
 
-        public TileViewerForm(string fileName ,bool tileVisibility = true, bool bonusVisibility =  true)
+        public TileViewerForm(string fileName ,bool tileVisibility = true, bool bonusVisibility =  true,bool gateVisibility = true,bool showTransportation = true)
         {
             InitializeComponent();
 
             _showTiles = tileVisibility;
             _showBonusses = bonusVisibility;
+            _showGates = gateVisibility;
+            _showTransportation = showTransportation;
 
             this.DoubleBuffered = this.ResizeRedraw = true;
             var file = new FileStream(fileName, FileMode.Open);
@@ -79,6 +88,11 @@ namespace TTFTileMapViewer
             file.Position = p + 768;
             file.Read(gameObjectData, 0, gameObjectData.Length);
             GameObjects = TileTool.GetGameObjects(gameObjectData);
+
+            var gateData = new byte[20 * 7];
+            file.Position = p + 2716;
+            file.Read(gateData, 0, gateData.Length);
+            Gates = TileTool.GetGates(gateData);
 
             file.Dispose();
 
@@ -136,6 +150,32 @@ namespace TTFTileMapViewer
                 for (var index = 0; index < Bonusses.Length; index++)
                 {
                     e.Graphics.DrawImage(__tiles[Bonusses[index].SpriteNumber].ImageData, Bonusses[index].X * 15, Bonusses[index].Y * 15);
+                }
+            }
+
+            if (_showGates)
+            {
+
+                for (var index = 0; index < Gates.Length; index++)
+                {
+                    var rect = new RectangleF(Gates[index].EntranceX * 15 - 8, Gates[index].EntranceY * 15 - 8, 16, 16);
+
+                    e.Graphics.DrawRectangle(new Pen(new SolidBrush(Color.Blue)), rect);
+                    e.Graphics.DrawString(@$"{index} EN", Font, new SolidBrush(Color.White), rect);
+
+                    rect = new RectangleF(Gates[index].ExitX * 15 - 8, Gates[index].ExitY * 15 - 8, 16, 16);
+                    e.Graphics.DrawRectangle(new Pen(new SolidBrush(Color.Red)), rect);
+                    e.Graphics.DrawString(@$"{index} EN", Font, new SolidBrush(Color.White), rect);
+                }
+            }
+
+            if (_showTransportation)
+            {
+
+                for (var index = 0; index < Gates.Length; index++)
+                {
+                    e.Graphics.DrawLine(new Pen(new SolidBrush(Color.White)), Gates[index].EntranceX*15, Gates[index].EntranceY*15, Gates[index].ExitX * 15, Gates[index].ExitY * 15);
+
                 }
             }
 
