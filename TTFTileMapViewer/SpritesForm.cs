@@ -1,18 +1,19 @@
 ﻿namespace TTFTileMapViewer
 {
-    public partial class TileToolForm : Form
+    public partial class SpritesForm : Form
     {
-        public Tile[] _tiles = new Tile[0];
-        public Tile[] Tiles
+
+        public Sprite[] _sprites = new Sprite[0];
+        public Sprite[] Tiles
         {
-            get => _tiles;
+            get => _sprites;
             set
             {
                 gameItemContainerControl1.Items = value;
                 Redraw();
             }
         }
-        public TileToolForm()
+        public SpritesForm()
         {
             InitializeComponent();
             this.DoubleBuffered = this.ResizeRedraw = true;

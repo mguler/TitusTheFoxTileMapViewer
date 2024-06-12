@@ -28,27 +28,27 @@
         /// </summary>
         public void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.SuspendLayout();
+            panel1 = new Panel();
+            SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 100);
-            this.panel1.TabIndex = 1;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(200, 100);
+            panel1.TabIndex = 1;
             // 
             // TileViewerForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.panel1);
-            this.Name = "TileViewerForm";
-            this.Load += new System.EventHandler(this.Form1_Load);
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            AutoScroll = true;
+            ClientSize = new Size(800, 450);
+            Controls.Add(panel1);
+            Name = "TileViewerForm";
+            Load += Form1_Load;
+            MouseClick += TileViewerForm_MouseClick;
+            ResumeLayout(false);
         }
 
         #endregion

@@ -1,6 +1,6 @@
 ﻿namespace TTFTileMapViewer
 {
-    partial class TileToolForm
+    partial class SpritesForm
     {
         /// <summary>
         /// Required designer variable.
