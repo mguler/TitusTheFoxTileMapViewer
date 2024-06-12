@@ -1,31 +1,24 @@
-﻿namespace TTFTileMapViewer
+﻿
+namespace TTFTileMapViewer
 {
-    public partial class TileToolForm : Form
+    public partial class TilePropertiesForm : Form
     {
-        public Tile[] _tiles = new Tile[0];
-        public Tile[] Tiles
-        {
-            get => _tiles;
-            set
-            {
-                gameItemContainerControl1.Items = value;
-                Redraw();
-            }
-        }
-        public TileToolForm()
+        public object Tile { get => propertyGrid1.SelectedObject;  set => this.propertyGrid1.SelectedObject = value; } 
+
+        public TilePropertiesForm()
         {
             InitializeComponent();
             this.DoubleBuffered = this.ResizeRedraw = true;
         }
 
         private void Redraw()
-        {    
-
+        {
+            
         }
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            Redraw();
+
         }
         private void TileToolForm_Load(object sender, EventArgs e)
         {
