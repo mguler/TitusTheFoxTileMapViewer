@@ -104,6 +104,15 @@
             {
                 form.ShowBonusses = menuItem.Checked;
             }
+            else if (menuItem.Text == "Transportation Gates")
+            {
+                form.ShowGates = menuItem.Checked;
+            }
+            else if (menuItem.Text == "Transportation")
+            {
+                form.ShowTransportation = menuItem.Checked;
+            }
+
             form.Refresh();
         }
     }

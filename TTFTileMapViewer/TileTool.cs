@@ -90,6 +90,34 @@ namespace TTFTileMapViewer
             return result.ToArray();
         }
 
+        ///         x+2716	20*7		Gates
+        /// Offset Size What it is
+        /// -----------------------------
+        /// 0	2	X/Y coordinates of entrance
+        /// 2	2	X/Y coordinates of screen position after passing through a gate
+        /// 4	2	X/Y coordinates of exit
+        /// 6	1	Scrolling; if this is non-zero, scrolling is disabled after passing through
+        /// <summary>
+        public static Gate[] GetGates(byte[] data)
+        {
+            var result = new List<Gate>();
+
+            for (var index = 0; index < 20*7; index += 7)
+            {
+                var bonus = new Gate
+                {
+                    EntranceX = data[index],
+                    EntranceY = data[index + 1],
+                    ScreenX = data[index + 2],
+                    ScreenY = data[index + 3],
+                    ExitX = data[index + 4],
+                    ExitY = data[index + 5]
+                };
+                result.Add(bonus);
+            }
+            return result.ToArray();
+        }
+
         public static GameObject[] GetGameObjects(byte[] data)
         {
             var result = new List<GameObject>();

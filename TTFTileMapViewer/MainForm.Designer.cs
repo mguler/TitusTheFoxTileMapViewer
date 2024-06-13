@@ -47,6 +47,8 @@
             graphicsToolStripMenuItem = new ToolStripMenuItem();
             tilesToolStripMenuItem = new ToolStripMenuItem();
             bonussesToolStripMenuItem = new ToolStripMenuItem();
+            gatesToolStripMenuItem = new ToolStripMenuItem();
+            transportationLinesToolStripMenuItem = new ToolStripMenuItem();
             openFileDialog = new OpenFileDialog();
             importFileDialog = new OpenFileDialog();
             openFileDialog1 = new OpenFileDialog();
@@ -162,7 +164,7 @@
             // 
             // graphicsToolStripMenuItem
             // 
-            graphicsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { tilesToolStripMenuItem, bonussesToolStripMenuItem });
+            graphicsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { tilesToolStripMenuItem, bonussesToolStripMenuItem, gatesToolStripMenuItem, transportationLinesToolStripMenuItem });
             graphicsToolStripMenuItem.Name = "graphicsToolStripMenuItem";
             graphicsToolStripMenuItem.Size = new Size(180, 22);
             graphicsToolStripMenuItem.Text = "Sprite Visibility";
@@ -173,7 +175,7 @@
             tilesToolStripMenuItem.CheckOnClick = true;
             tilesToolStripMenuItem.CheckState = CheckState.Checked;
             tilesToolStripMenuItem.Name = "tilesToolStripMenuItem";
-            tilesToolStripMenuItem.Size = new Size(180, 22);
+            tilesToolStripMenuItem.Size = new Size(182, 22);
             tilesToolStripMenuItem.Text = "Tiles";
             tilesToolStripMenuItem.CheckedChanged += StripMenuItemCheckedChanged;
             // 
@@ -183,9 +185,29 @@
             bonussesToolStripMenuItem.CheckOnClick = true;
             bonussesToolStripMenuItem.CheckState = CheckState.Checked;
             bonussesToolStripMenuItem.Name = "bonussesToolStripMenuItem";
-            bonussesToolStripMenuItem.Size = new Size(180, 22);
+            bonussesToolStripMenuItem.Size = new Size(182, 22);
             bonussesToolStripMenuItem.Text = "Bonusses";
             bonussesToolStripMenuItem.CheckedChanged += StripMenuItemCheckedChanged;
+            // 
+            // gatesToolStripMenuItem
+            // 
+            gatesToolStripMenuItem.Checked = true;
+            gatesToolStripMenuItem.CheckOnClick = true;
+            gatesToolStripMenuItem.CheckState = CheckState.Checked;
+            gatesToolStripMenuItem.Name = "gatesToolStripMenuItem";
+            gatesToolStripMenuItem.Size = new Size(182, 22);
+            gatesToolStripMenuItem.Text = "Transportation Gates";
+            gatesToolStripMenuItem.CheckedChanged += StripMenuItemCheckedChanged;
+            // 
+            // transportationLinesToolStripMenuItem
+            // 
+            transportationLinesToolStripMenuItem.Checked = true;
+            transportationLinesToolStripMenuItem.CheckOnClick = true;
+            transportationLinesToolStripMenuItem.CheckState = CheckState.Checked;
+            transportationLinesToolStripMenuItem.Name = "transportationLinesToolStripMenuItem";
+            transportationLinesToolStripMenuItem.Size = new Size(182, 22);
+            transportationLinesToolStripMenuItem.Text = "Transportation";
+            transportationLinesToolStripMenuItem.CheckedChanged += StripMenuItemCheckedChanged;
             // 
             // openFileDialog
             // 
@@ -251,5 +273,7 @@
         private ToolStripMenuItem graphicsToolStripMenuItem;
         private ToolStripMenuItem tilesToolStripMenuItem;
         private ToolStripMenuItem bonussesToolStripMenuItem;
+        private ToolStripMenuItem gatesToolStripMenuItem;
+        private ToolStripMenuItem transportationLinesToolStripMenuItem;
     }
 }
